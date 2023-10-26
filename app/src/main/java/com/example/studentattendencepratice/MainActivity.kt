@@ -49,6 +49,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val list2 = FileReader.readFile(this, "Attendace")
+            val list3 = FileParser.PopulateLetter(list2)
             StudentAttendencePraticeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -58,7 +59,7 @@ class MainActivity : ComponentActivity() {
                     //Header(name = "STUDENT'S ATTENDANCE")
                    // CategoryList(list = list2)
                    // HeaderAndFooter(list = list2)
-                    HomeScreen(list = list2)
+                    HomeScreen(list = list2, letterList = list3)
                 }
             }
         }
@@ -66,11 +67,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HomeScreen(list: ArrayList<StudentNames>){
+fun HomeScreen(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "home_page") {
         composable("home_page"){
-            HeaderAndFooter(list = list, navController = navController )
+            HeaderAndFooter(list = list, letterList = letterList, navController = navController )
         }
 
         composable("total_count"){
@@ -78,7 +79,8 @@ fun HomeScreen(list: ArrayList<StudentNames>){
         }
 
         composable("gold_star") {
-            clickGoldButton(navController = navController)
+            //clickGoldButton(navController = navController)
+            StudentGoldList(list = list, navController = navController )
         }
 
         composable("random_student"){
@@ -89,7 +91,7 @@ fun HomeScreen(list: ArrayList<StudentNames>){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HeaderAndFooter(list: ArrayList<StudentNames>, navController: NavController){
+fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>, navController: NavController){
     Scaffold(
         topBar =  {
             CenterAlignedTopAppBar(
@@ -151,6 +153,6 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, navController: NavController)
             }
         },
     ) { innerPadding ->
-        StudentList(list = list, paddingValues = innerPadding)
+        StudentList(list = list, sort =  letterList, paddingValues = innerPadding)
     }
 }

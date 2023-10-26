@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -25,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
 fun GoldStarHeader( name: String){
@@ -62,19 +64,27 @@ fun GoldStarHeader( name: String){
 
 
 @Composable
-fun StudentGoldList (list: ArrayList<StudentNames>, paddingValues: PaddingValues) {
+fun StudentGoldList (list: ArrayList<StudentNames>, navController: NavController) {
+    Button(onClick = { navController.navigate("home_page") }) {
+        Text(
+            textAlign = TextAlign.Center,
+            text = "Gold Stars",
+        )
+    }
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            //.padding(top = 80.dp)
-            .padding(paddingValues)
+            .padding(top = 80.dp)
+
     ) {
-        for (students:StudentNames in list){
-            item { StudentGoldStars( studentNames = students)
+        val sortedNumbers = list.sortedByDescending { students ->  students.count }
+        for (students:StudentNames in sortedNumbers){
+
+            item {
+                StudentGoldStars( studentNames = students)
                 Divider(color = Color.Black)
             }
         }
-
     }
 }
 

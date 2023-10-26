@@ -1,6 +1,7 @@
 package com.example.studentattendencepratice
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
@@ -71,37 +72,64 @@ fun Header( name: String){
 
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun StudentList (list: ArrayList<StudentNames>, paddingValues: PaddingValues) {
+fun StudentList (list: ArrayList<StudentNames>,sort: ArrayList<SortingNames>, paddingValues: PaddingValues) {
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             //.padding(top = 80.dp)
             .padding(paddingValues)
     ) {
+        val sortLetters = sort.sortedBy { sortingNames -> sortingNames.letter }
+        for(sortingNames: SortingNames in sortLetters){
+            stickyHeader { LetterCard(sortingNames = sortingNames) }
+            val sortStudents = list.sortedBy { students -> students.names }
+            for (students:StudentNames in sortStudents){
+                if(students.names.first().toString().equals(sortingNames.letter, true)){
+                    item {
+                        StudentCard(studentNames = students)
+                        Divider(color = Color.Black)
+                    }
+                }
+                /*
+                if(students.names.first().toString().equals(sortingNames.letter, true)){
+                    item {
+                        StudentCard(studentNames = students)
+                        Divider(color = Color.Black)
+                    }
+                }
+
+                 */
+            }
+        }
+
+/*
         for (students:StudentNames in list){
             item { StudentCard( studentNames = students)
             Divider(color = Color.Black)}
         }
 
+ */
+
     }
 }
 
 @Composable
-fun LetterCard(studentNames: StudentNames) {
+fun LetterCard(sortingNames: SortingNames) {
     Card(modifier = Modifier
         //.padding(15.dp)
         .fillMaxWidth(),
         colors = CardDefaults.cardColors(
             // change the name for the colors. They are stored in the colors.xml under resource value
-            containerColor = colorResource(id = R.color.purple_200)
+            containerColor = colorResource(id = R.color.purple_500)
         ),
         shape = RectangleShape
     )
     {
         Text(
             // shows the name of the category
-            text = studentNames.names,
+            text = sortingNames.letter.uppercase(),
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,

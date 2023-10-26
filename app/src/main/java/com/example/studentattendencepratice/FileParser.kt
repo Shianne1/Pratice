@@ -7,6 +7,7 @@ object FileParser {
     )
 
     fun PopulateLetter(studentNames: ArrayList<StudentNames>): ArrayList<SortingNames>{
+        /*
         val alphabet = ArrayList<String>()
         alphabet.add("A")
         alphabet.add("B")
@@ -35,25 +36,66 @@ object FileParser {
         alphabet.add("Y")
         alphabet.add("Z")
 
+         */
+
         val sortingNames = ArrayList<SortingNames>()
-        /*
+
         for(studentLetter in studentNames) {
+            /*
+            val newSortingNames = SortingNames(studentLetter.names.first().toString(),ArrayList())
+            newSortingNames.students.add(studentLetter)
+            sortingNames.add(newSortingNames)
+
+             */
+
+
             if(sortingNames.isEmpty()){
-                val newSortingNames = SortingNames(studentLetter.names.first().toString(),ArrayList())
+                val newSortingNames = SortingNames(studentLetter.names.first().toString(), ArrayList())
                 newSortingNames.students.add(studentLetter)
                 sortingNames.add(newSortingNames)
             }
             else {
+                var letterExits = false
+                for(s in sortingNames){
+                    if(s.letter.equals(studentLetter.names.first().toString(), true)){
+                        //sortingNames.add(SortingNames(studentLetter.names.first().toString()))
+                        s.students.add(studentLetter)
+                        //sortingNames.add(SortingNames(s.letter, ArrayList()))
+                        letterExits = true
+                    }
+                }
+
+                if(!letterExits){
+                    val newSortingNames = SortingNames(studentLetter.names.first().toString(), ArrayList())
+                    newSortingNames.students.add(studentLetter)
+                    sortingNames.add(newSortingNames)
+                }
+            }
+
+
+
+            /*
+            if(sortingNames.isEmpty()){
+                val newSortingNames = SortingNames(studentLetter.names.first().toString())
+                //newSortingNames.students.add(studentLetter)
+
+                sortingNames.add(newSortingNames)
+            }
+            else {
                 for(letter in alphabet){
-                    if(alphabet.letter.equals(studentLetter.names.first().toString(), true)){
-                        sortingNames.add(SortingNames(studentLetter.names.first().toString(),ArrayList()))
+                    if(letter.equals(studentLetter.names.first().toString(), true)){
+                        //sortingNames.add(SortingNames(studentLetter.names.first().toString()))
+                        sortingNames.add(SortingNames(letter))
                     }
                 }
             }
-            studentLetter.names.first()
-        }
 
-         */
+             */
+
+
+
+            // a, b, c, d, e, h, j, l, m, r, s, t
+        }
         return sortingNames
     }
 }
