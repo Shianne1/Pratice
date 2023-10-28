@@ -1,24 +1,37 @@
-package com.example.studentattendencepratice.ui.theme
+package com.example.studentattendencepratice
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlin.random.Random
 
 @Composable
 fun HomeScreen(){
@@ -127,5 +140,71 @@ fun clickRandomButton(navController: NavController){
             textAlign = TextAlign.Center,
             text = "Random Student",
         )
+    }
+}
+
+
+
+
+@Composable
+fun TotalDialog(studentList: ArrayList<StudentNames>) {
+    var showDialog by remember { mutableStateOf(false) }
+    Column {
+        Button(onClick = { showDialog = true }) {
+            Text(text = "Student Count" )
+        }
+    }
+    if (showDialog) { Dialog(onDismissRequest = {showDialog = false}) {
+            // Custom shape, background, and layout for the dialog
+            Surface(
+                modifier = Modifier
+                    .height(540.dp)
+                    .width(500.dp),
+                //color = Color.Cyan,
+                shape = RoundedCornerShape(16.dp),
+            ) {
+                Card(modifier = Modifier
+                    .height(300.dp)
+                    .fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        if(studentList.size == 25 /*The list is actually 23, but I am adding professor and a demo student*/){
+                            Image(painter = painterResource(id = R.drawable.furniture_small),
+                                contentDescription = "null"
+                            )
+                            Text(text = "Good Job!\uD83D\uDE04 \n All students are here.",
+                                textAlign = TextAlign.Center,
+                                fontSize = 40.sp,
+                                modifier = Modifier.padding(top = 25.dp),
+                                lineHeight = 35.sp
+                            )
+                        } else {
+                            Image(painter = painterResource(id = R.drawable.furniture_small),
+                                contentDescription = "null"
+                            )
+                            val missingStudents = 25 - studentList.size
+                            Text(text = "Oh No! \uD83D\uDE1F \n There are $missingStudents students missing.",
+                                textAlign = TextAlign.Center,
+                                fontSize = 40.sp,
+                                modifier = Modifier.padding(top = 25.dp),
+                                lineHeight = 35.sp
+                            )
+                        }
+                        Button(
+                            onClick = { showDialog = false },
+                            modifier = Modifier.padding(top = 16.dp)
+                        ) {
+                            Text("Close")
+                        }
+                    }
+                }
+
+            }
+        }
     }
 }
