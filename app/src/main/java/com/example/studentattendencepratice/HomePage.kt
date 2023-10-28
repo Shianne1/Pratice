@@ -1,9 +1,11 @@
 package com.example.studentattendencepratice
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +15,7 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -23,11 +26,18 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -134,15 +144,19 @@ fun LetterCard(sortingNames: SortingNames) {
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier
-                .padding(10.dp)
-                .align(alignment = Alignment.CenterHorizontally)
+                .padding(15.dp)
+                .align(alignment = Alignment.Start)
         )
 
     }
 }
 
 @Composable
-fun StudentCard(studentNames: StudentNames) {
+fun StudentCard(studentNames: StudentNames) { // Stateless counter
+    var addStar by rememberSaveable { mutableIntStateOf(studentNames.count) }
+    var count by rememberSaveable { mutableIntStateOf(studentNames.count) }
+    //var add by remember { mutableIntStateOf(addStar ++) }
+    val name = studentNames.names
     Card(modifier = Modifier
         //.padding(15.dp)
         .fillMaxWidth(),
@@ -160,9 +174,51 @@ fun StudentCard(studentNames: StudentNames) {
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier
+                .padding(25.dp)
+                .align(alignment = Alignment.Start)
+        )
+        /*
+        Button(onClick = update/*{ addStar += 1 } */) {
+            Text(
+                textAlign = TextAlign.Center,
+                text = "Total Count",
+            )
+        }
+
+
+
+        StarAwards(studentNames = studentNames)
+
+        Text(
+            // shows the name of the category
+            text = addStar.toString(), /*studentNames.count.toString(),*/
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            modifier = Modifier
                 .padding(10.dp)
-                .align(alignment = Alignment.CenterHorizontally)
         )
 
+        StudentNames(name,addStar)
     }
+    */
+    }
+}
+
+@Composable
+fun Stateless( onIncrement: () -> Unit) {
+    //val count = studentNames.count
+    Button(onClick = onIncrement
+    /*{ addStar += 1 } */) {
+        Text(
+            textAlign = TextAlign.Center,
+            text = "Total Count",
+        )
+    }
+}
+@Composable
+fun Stateful (studentNames: StudentNames){ //stateful counter
+    var addStar by rememberSaveable { mutableIntStateOf(studentNames.count) }
+    Stateless { addStar++ }
+
 }

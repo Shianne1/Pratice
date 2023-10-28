@@ -83,9 +83,12 @@ fun HomeScreen(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames
             StudentGoldList(list = list, navController = navController )
         }
 
+        /*
         composable("random_student"){
             clickRandomButton(navController = navController)
         }
+
+         */
     }
 }
 
@@ -143,12 +146,16 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                             text = "Gold Stars",
                         )
                     }
-                    Button(onClick = { navController.navigate("random_student") }) {
+                    /*
+                    Button(onClick = { navController.navigate("random_student")}) {
                         Text(
                             textAlign = TextAlign.Center,
                             text = "Random Student",
                         )
                     }
+
+                     */
+                    StudentDialog(studentList = list)
                 }
             }
         },
