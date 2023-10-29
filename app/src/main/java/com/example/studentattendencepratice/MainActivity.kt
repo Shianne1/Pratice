@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +25,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -30,6 +34,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.studentattendencepratice.ui.theme.Amaranth
+import com.example.studentattendencepratice.ui.theme.Bittersweet
+import com.example.studentattendencepratice.ui.theme.Claret
 import com.example.studentattendencepratice.ui.theme.StudentAttendencePraticeTheme
 
 class MainActivity : ComponentActivity() {
@@ -93,8 +100,7 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                     //.padding(top = 30.dp)
                     .height(120.dp),
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = Color.Blue,
+                    containerColor = Claret,
                 ),
                 title = {
                     Row(
@@ -108,7 +114,7 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                                 text = "STUDENT'S ATTENDANCE",
                                 fontSize = 40.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Black,
+                                color = Color.White,
                             )
                         }
                     }
@@ -117,8 +123,10 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
         },
         bottomBar = {
             BottomAppBar(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                containerColor = Claret,
                 contentColor = MaterialTheme.colorScheme.primary,
+                modifier = Modifier
+                    .height(90.dp),
             )
             {
                 Row( modifier = Modifier
@@ -136,10 +144,17 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                      */
                     TotalDialog(studentList = list)
 
-                    Button(onClick = { navController.navigate("gold_star") }) {
+                    Button(onClick = { navController.navigate("gold_star") },
+                        shape =  RoundedCornerShape(10.dp),
+                        colors = ButtonDefaults.buttonColors(Bittersweet),
+                        modifier = Modifier
+                            .padding(12.dp)
+                    ) {
                         Text(
                             textAlign = TextAlign.Center,
                             text = "Gold Stars",
+                            fontSize = 25.sp,
+                            color = Color.White
                         )
                     }
                     /*

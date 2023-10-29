@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -31,6 +32,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.studentattendencepratice.ui.theme.Bittersweet
 import kotlin.random.Random
 
 @Composable
@@ -150,8 +152,16 @@ fun clickRandomButton(navController: NavController){
 fun TotalDialog(studentList: ArrayList<StudentNames>) {
     var showDialog by remember { mutableStateOf(false) }
     Column {
-        Button(onClick = { showDialog = true }) {
-            Text(text = "Student Count" )
+        Button(onClick = { showDialog = true },
+            shape =  RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(Bittersweet),
+            modifier = Modifier
+                .padding(12.dp)
+            ) {
+            Text(text = "Student Count",
+                fontSize = 25.sp,
+                color = Color.White
+                )
         }
     }
     if (showDialog) { Dialog(onDismissRequest = {showDialog = false}) {
@@ -197,9 +207,14 @@ fun TotalDialog(studentList: ArrayList<StudentNames>) {
                         }
                         Button(
                             onClick = { showDialog = false },
+                            shape =  RoundedCornerShape(10.dp),
+                            colors = ButtonDefaults.buttonColors(Bittersweet),
                             modifier = Modifier.padding(top = 16.dp)
                         ) {
-                            Text("Close")
+                            Text("Close",
+                                fontSize = 25.sp,
+                                color = Color.White
+                                )
                         }
                     }
                 }

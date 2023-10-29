@@ -5,6 +5,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -45,7 +46,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.studentattendencepratice.ui.theme.Amaranth
+import com.example.studentattendencepratice.ui.theme.Bittersweet
+import com.example.studentattendencepratice.ui.theme.Claret
+import com.example.studentattendencepratice.ui.theme.Coral
 
+/*
 
 @Composable
 fun Header( name: String){
@@ -80,6 +86,8 @@ fun Header( name: String){
 
 }
 
+ */
+
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -88,7 +96,7 @@ fun StudentList (list: ArrayList<StudentNames>,sort: ArrayList<SortingNames>, pa
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            //.padding(top = 80.dp)
+            //.padding(top = 135.dp)
             .padding(paddingValues)
     ) {
         val sortLetters = sort.sortedBy { sortingNames -> sortingNames.letter }
@@ -99,7 +107,7 @@ fun StudentList (list: ArrayList<StudentNames>,sort: ArrayList<SortingNames>, pa
                 if(students.names.first().toString().equals(sortingNames.letter, true)){
                     item {
                         StudentCard(studentNames = students)
-                        Divider(color = Color.Black)
+                        //Divider(color = Color.Black)
                     }
                 }
                 /*
@@ -129,11 +137,13 @@ fun StudentList (list: ArrayList<StudentNames>,sort: ArrayList<SortingNames>, pa
 fun LetterCard(sortingNames: SortingNames) {
     Card(modifier = Modifier
         //.padding(15.dp)
-        .fillMaxWidth(),
+        .fillMaxWidth()
+        .border(3.dp, color = Claret, shape = RectangleShape),
         colors = CardDefaults.cardColors(
             // change the name for the colors. They are stored in the colors.xml under resource value
-            containerColor = colorResource(id = R.color.purple_500)
+            containerColor = Amaranth
         ),
+        elevation = CardDefaults.cardElevation(8.dp),
         shape = RectangleShape
     )
     {
@@ -153,16 +163,14 @@ fun LetterCard(sortingNames: SortingNames) {
 
 @Composable
 fun StudentCard(studentNames: StudentNames) { // Stateless counter
-    var addStar by rememberSaveable { mutableIntStateOf(studentNames.count) }
-    var count by rememberSaveable { mutableIntStateOf(studentNames.count) }
-    //var add by remember { mutableIntStateOf(addStar ++) }
-    val name = studentNames.names
     Card(modifier = Modifier
-        //.padding(15.dp)
+        .padding(15.dp)
+        .border(3.dp, color = Claret, shape = RectangleShape)
         .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(8.dp),
         colors = CardDefaults.cardColors(
             // change the name for the colors. They are stored in the colors.xml under resource value
-            containerColor = colorResource(id = R.color.purple_200)
+            containerColor = Coral
         ),
         shape = RectangleShape
     )
@@ -205,6 +213,7 @@ fun StudentCard(studentNames: StudentNames) { // Stateless counter
     }
 }
 
+/*
 @Composable
 fun Stateless( onIncrement: () -> Unit) {
     //val count = studentNames.count
@@ -222,3 +231,5 @@ fun Stateful (studentNames: StudentNames){ //stateful counter
     Stateless { addStar++ }
 
 }
+
+ */
