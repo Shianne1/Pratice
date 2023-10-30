@@ -28,7 +28,6 @@ import kotlin.random.Random
 fun StudentDialog(studentList: ArrayList<StudentNames>) {
     val nameList = ArrayList<String>()
     var showDialog by remember { mutableStateOf(false) }
-    //var clickRandom by remember { mutableStateOf(nameList) }
     Column {
         Button(onClick = { showDialog = true },
             shape =  RoundedCornerShape(10.dp),
@@ -54,15 +53,6 @@ fun StudentDialog(studentList: ArrayList<StudentNames>) {
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    /*
-                    val list = listOf("hello", "pie", "love", "do", "bike")
-                    val randomIndex = Random.nextInt(list.size);
-                    val randomElement = list[randomIndex]
-                    Text("Random Student: $randomElement")
-
-                     */
-
-                   // val nameList = ArrayList<String>()
                     TeamK9()
                     for(s in studentList){
                         nameList.add(s.names)
@@ -74,25 +64,6 @@ fun StudentDialog(studentList: ArrayList<StudentNames>) {
                         color = Color.Black,
                         fontWeight = FontWeight.Bold
                     )
-                    /*
-                    Button(onClick = {
-                        for(s in studentList){
-                        nameList.add(s.names)
-                    }
-                        val random = Random.nextInt(nameList.size)},
-                        //val randomStudents1 = nameList[random] },
-                        modifier = Modifier.padding(top = 16.dp)
-                    ) {
-                        Text("Click Again")
-                    }
-
-                    val randomStudents1 = nameList[random]
-                    Text(text = "$randomStudents1",
-                        fontSize = 35.sp
-                    )
-
-                     */
-
                     Button(
                         onClick = { showDialog = false },
                         shape =  RoundedCornerShape(10.dp),

@@ -93,11 +93,8 @@ fun Header( name: String){
 @Composable
 fun ImageHeader() {
         Card(modifier = Modifier
-            //.padding(15.dp)
             .fillMaxWidth()
-            .height(100.dp)
-            //.background(color = colorResource(id = R.color.pale_blue))
-           ,
+            .height(100.dp),
             shape = RectangleShape) {
             Column(
                 modifier = Modifier
@@ -109,9 +106,6 @@ fun ImageHeader() {
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
                     .fillMaxWidth()
-                    //.height(150.dp),
-                        //.width(700.dp),
-                    //contentScale = ContentScale.FillWidth,
                 )
             }
         }
@@ -123,7 +117,6 @@ fun StudentList (list: ArrayList<StudentNames>,sort: ArrayList<SortingNames>, pa
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            //.padding(top = 135.dp)
             .padding(paddingValues)
     ) {
         val sortLetters = sort.sortedBy { sortingNames -> sortingNames.letter }
@@ -134,48 +127,24 @@ fun StudentList (list: ArrayList<StudentNames>,sort: ArrayList<SortingNames>, pa
                 if(students.names.first().toString().equals(sortingNames.letter, true)){
                     item {
                         StudentCard(studentNames = students)
-                        //Divider(color = Color.Black)
                     }
                 }
-                /*
-                if(students.names.first().toString().equals(sortingNames.letter, true)){
-                    item {
-                        StudentCard(studentNames = students)
-                        Divider(color = Color.Black)
-                    }
-                }
-
-                 */
             }
         }
-
-/*
-        for (students:StudentNames in list){
-            item { StudentCard( studentNames = students)
-            Divider(color = Color.Black)}
-        }
-
- */
-
     }
 }
 
 @Composable
 fun LetterCard(sortingNames: SortingNames) {
     Card(modifier = Modifier
-        //.padding(15.dp)
         .fillMaxWidth()
         .border(3.dp, color = Claret, shape = RectangleShape),
-        colors = CardDefaults.cardColors(
-            // change the name for the colors. They are stored in the colors.xml under resource value
-            containerColor = Amaranth
-        ),
+        colors = CardDefaults.cardColors(containerColor = Amaranth),
         elevation = CardDefaults.cardElevation(8.dp),
         shape = RectangleShape
     )
     {
         Text(
-            // shows the name of the category
             text = sortingNames.letter.uppercase(),
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
@@ -195,15 +164,11 @@ fun StudentCard(studentNames: StudentNames) { // Stateless counter
         .border(3.dp, color = Claret, shape = RectangleShape)
         .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(
-            // change the name for the colors. They are stored in the colors.xml under resource value
-            containerColor = Coral
-        ),
+        colors = CardDefaults.cardColors(containerColor = Coral),
         shape = RectangleShape
     )
     {
         Text(
-            // shows the name of the category
             text = studentNames.names,
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
@@ -212,31 +177,6 @@ fun StudentCard(studentNames: StudentNames) { // Stateless counter
                 .padding(25.dp)
                 .align(alignment = Alignment.Start)
         )
-        /*
-        Button(onClick = update/*{ addStar += 1 } */) {
-            Text(
-                textAlign = TextAlign.Center,
-                text = "Total Count",
-            )
-        }
-
-
-
-        StarAwards(studentNames = studentNames)
-
-        Text(
-            // shows the name of the category
-            text = addStar.toString(), /*studentNames.count.toString(),*/
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(10.dp)
-        )
-
-        StudentNames(name,addStar)
-    }
-    */
     }
 }
 

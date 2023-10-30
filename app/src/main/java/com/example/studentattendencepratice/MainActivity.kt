@@ -46,7 +46,6 @@ class MainActivity : ComponentActivity() {
             val list2 = FileReader.readFile(this, "Attendace")
             val list3 = FileParser.PopulateLetter(list2)
             StudentAttendencePraticeTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -67,24 +66,9 @@ fun HomeScreen(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames
             HeaderAndFooter(list = list, letterList = letterList, navController = navController )
         }
 
-        /*
-        composable("total_count"){
-            clickTotalButton(navController = navController)
-        }
-
-         */
-
         composable("gold_star") {
-            //clickGoldButton(navController = navController)
             StudentGoldList(list = list, navController = navController )
         }
-
-        /*
-        composable("random_student"){
-            clickRandomButton(navController = navController)
-        }
-
-         */
     }
 }
 
@@ -105,8 +89,6 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                     Row(
                         modifier = Modifier
                             .padding(top = 25.dp, bottom = 10.dp)
-                            //.width(600.dp)
-                            //.background(color = Color.Yellow, shape = RectangleShape),
                     ) {
                         TextButton( onClick = { /*TODO*/ }) {
                             Text(
@@ -130,17 +112,8 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
             {
                 Row( modifier = Modifier
                     .fillMaxWidth(),
-                    //.background(color = Color.Yellow, shape = RectangleShape),
                     horizontalArrangement = Arrangement.SpaceEvenly){
-                    /*
-                    Button(onClick = { navController.navigate("total_count")  }) {
-                        Text(
-                            textAlign = TextAlign.Center,
-                            text = "Total Count",
-                        )
-                    }
 
-                     */
                     TotalDialog(studentList = list)
 
                     Button(onClick = { navController.navigate("gold_star") },
@@ -156,15 +129,7 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                             color = Color.White
                         )
                     }
-                    /*
-                    Button(onClick = { navController.navigate("random_student")}) {
-                        Text(
-                            textAlign = TextAlign.Center,
-                            text = "Random Student",
-                        )
-                    }
 
-                     */
                     StudentDialog(studentList = list)
                 }
             }

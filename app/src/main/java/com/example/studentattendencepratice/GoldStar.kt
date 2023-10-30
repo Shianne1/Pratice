@@ -76,38 +76,6 @@ fun GoldStarHeader(navController: NavController){
                 )
             }
         }
-
-        /*
-        Surface(
-            shape = RectangleShape,
-            modifier = Modifier
-                // wraps completely around the text
-                .wrapContentSize(Alignment.TopCenter, false)
-                //fills it to hit the edge of the device
-                .size(width = 490.dp, height = 70.dp)
-                .padding(top = 20.dp, bottom = 10.dp, start = 15.dp, end = 10.dp)
-        ){
-            Column {
-                Text(
-                    text = "⭐ GOLD STARS ⭐",
-                    textAlign = TextAlign.Center,
-                    fontSize = 20.sp,
-                    modifier = Modifier
-                        .padding(top = 8.dp, bottom = 20.dp)
-                )
-
-                Button(onClick = { navController.navigate("home_page") }) {
-                    Text(
-                        textAlign = TextAlign.Center,
-                        text = "Gold Stars",
-                    )
-                }
-            }
-
-        }
-
-         */
-
     }
 
 }
@@ -120,16 +88,12 @@ fun StudentGoldList (list: ArrayList<StudentNames>, navController: NavController
         GoldStarHeader(navController =  navController)
         LazyColumn(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                //.padding(top = 200.dp)
-
         ) {
             val sortedNumbers = list.sortedByDescending { students ->  students.count }
             for (students:StudentNames in sortedNumbers){
 
                 item {
                     StudentGoldStars( studentNames = students)
-                   // Divider(color = Color.Black)
                 }
             }
         }
@@ -167,7 +131,6 @@ fun StarAwards(studentNames: StudentNames) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                // shows the name of the category
                 text = studentNames.names,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
@@ -178,7 +141,6 @@ fun StarAwards(studentNames: StudentNames) {
             )
 
             Text(
-                // shows the name of the category
                 text = studentNames.count.toString(),
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
@@ -199,7 +161,6 @@ fun StarAwards(studentNames: StudentNames) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                // shows the name of the category
                 text = studentNames.names,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
@@ -210,7 +171,6 @@ fun StarAwards(studentNames: StudentNames) {
             )
 
             Text(
-                // shows the name of the category
                 text = studentNames.count.toString(),
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
@@ -231,7 +191,6 @@ fun StarAwards(studentNames: StudentNames) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                // shows the name of the category
                 text = studentNames.names,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
@@ -242,7 +201,6 @@ fun StarAwards(studentNames: StudentNames) {
             )
 
             Text(
-                // shows the name of the category
                 text = studentNames.count.toString(),
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
