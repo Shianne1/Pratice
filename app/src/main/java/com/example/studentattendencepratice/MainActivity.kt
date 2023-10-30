@@ -51,9 +51,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //Header(name = "STUDENT'S ATTENDANCE")
-                   // CategoryList(list = list2)
-                   // HeaderAndFooter(list = list2)
+                    //ImageHeader()
                     HomeScreen(list = list2, letterList = list3)
                 }
             }
@@ -94,10 +92,11 @@ fun HomeScreen(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames
 @Composable
 fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>, navController: NavController){
     Scaffold(
+        modifier = Modifier
+            .padding(top = 120.dp),
         topBar =  {
             CenterAlignedTopAppBar(
                 modifier = Modifier
-                    //.padding(top = 30.dp)
                     .height(120.dp),
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Claret,

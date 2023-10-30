@@ -34,7 +34,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.studentattendencepratice.ui.theme.Bittersweet
 import kotlin.random.Random
-
+/*
 @Composable
 fun HomeScreen(){
     val navController = rememberNavController()
@@ -146,6 +146,8 @@ fun clickRandomButton(navController: NavController){
 }
 
 
+ */
+
 
 
 @Composable
@@ -168,7 +170,7 @@ fun TotalDialog(studentList: ArrayList<StudentNames>) {
             // Custom shape, background, and layout for the dialog
             Surface(
                 modifier = Modifier
-                    .height(540.dp)
+                    .height(590.dp)
                     .width(500.dp),
                 //color = Color.Cyan,
                 shape = RoundedCornerShape(16.dp),
@@ -184,23 +186,25 @@ fun TotalDialog(studentList: ArrayList<StudentNames>) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         if(studentList.size == 25 /*The list is actually 23, but I am adding professor and a demo student*/){
-                            Image(painter = painterResource(id = R.drawable.furniture_small),
+                            Image(painter = painterResource(id = R.drawable.good_job),
                                 contentDescription = "null"
                             )
                             Text(text = "Good Job!\uD83D\uDE04 \n All students are here.",
                                 textAlign = TextAlign.Center,
                                 fontSize = 40.sp,
                                 modifier = Modifier.padding(top = 25.dp),
+                                color = Color.Black,
                                 lineHeight = 35.sp
                             )
                         } else {
-                            Image(painter = painterResource(id = R.drawable.furniture_small),
+                            Image(painter = painterResource(id = R.drawable.oip),
                                 contentDescription = "null"
                             )
                             val missingStudents = 25 - studentList.size
                             Text(text = "Oh No! \uD83D\uDE1F \n There are $missingStudents students missing.",
                                 textAlign = TextAlign.Center,
                                 fontSize = 40.sp,
+                                color = Color.Black,
                                 modifier = Modifier.padding(top = 25.dp),
                                 lineHeight = 35.sp
                             )

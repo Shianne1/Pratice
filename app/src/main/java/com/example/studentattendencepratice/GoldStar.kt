@@ -141,7 +141,7 @@ fun StudentGoldList (list: ArrayList<StudentNames>, navController: NavController
 fun StudentGoldStars(studentNames: StudentNames) {
     Card(modifier = Modifier
         .padding(15.dp)
-        .height(70.dp)
+        .height(75.dp)
         .fillMaxWidth(),
         colors = CardDefaults.cardColors(
             // change the name for the colors. They are stored in the colors.xml under resource value
@@ -161,7 +161,7 @@ fun StarAwards(studentNames: StudentNames) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp)
+                .height(75.dp)
                 .border(3.dp, color = Claret, shape = RectangleShape)
                 .background(color = Fawn, shape = RectangleShape),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -174,7 +174,7 @@ fun StarAwards(studentNames: StudentNames) {
                // This is how it is use with ui.theme colors :  color = Purple80,
                 color = Color.Black,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(15.dp)
             )
 
             Text(
@@ -184,7 +184,8 @@ fun StarAwards(studentNames: StudentNames) {
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(15.dp)
+                    .padding(end = 10.dp)
             )
         }
     }
@@ -192,7 +193,7 @@ fun StarAwards(studentNames: StudentNames) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp)
+                .height(75.dp)
                 .border(3.dp, color = Claret, shape = RectangleShape)
                 .background(color = Amaranth , shape = RectangleShape),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -202,9 +203,10 @@ fun StarAwards(studentNames: StudentNames) {
                 text = studentNames.names,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
+                // This is how it is use with ui.theme colors :  color = Purple80,
                 color = Color.Black,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(15.dp)
             )
 
             Text(
@@ -214,7 +216,8 @@ fun StarAwards(studentNames: StudentNames) {
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(15.dp)
+                    .padding(end = 10.dp)
             )
         }
     }
@@ -222,7 +225,7 @@ fun StarAwards(studentNames: StudentNames) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp)
+                .height(75.dp)
                 .border(3.dp, color = Claret, shape = RectangleShape)
                 .background(color = Coral, shape = RectangleShape),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -232,9 +235,10 @@ fun StarAwards(studentNames: StudentNames) {
                 text = studentNames.names,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
+                // This is how it is use with ui.theme colors :  color = Purple80,
                 color = Color.Black,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(15.dp)
             )
 
             Text(
@@ -244,7 +248,8 @@ fun StarAwards(studentNames: StudentNames) {
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(15.dp)
+                    .padding(end = 10.dp)
             )
         }
     }

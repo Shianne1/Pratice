@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
@@ -88,7 +90,32 @@ fun Header( name: String){
 
  */
 
-
+@Composable
+fun ImageHeader() {
+        Card(modifier = Modifier
+            //.padding(15.dp)
+            .fillMaxWidth()
+            .height(100.dp)
+            //.background(color = colorResource(id = R.color.pale_blue))
+           ,
+            shape = RectangleShape) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.banner3),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier
+                    .fillMaxWidth()
+                    //.height(150.dp),
+                        //.width(700.dp),
+                    //contentScale = ContentScale.FillWidth,
+                )
+            }
+        }
+}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
