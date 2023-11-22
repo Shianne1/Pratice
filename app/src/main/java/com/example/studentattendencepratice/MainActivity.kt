@@ -47,13 +47,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             val list2 = FileReader.readFile(this, "Attendace")
             val list3 = FileParser.PopulateLetter(list2)
+            val window = rememberSize()
+
             StudentAttendencePraticeTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     //ImageHeader()
-                    HomeScreen(list = list2, letterList = list3)
+                    HomeScreen(list = list2, letterList = list3, windowSize = window)
                 }
             }
         }
@@ -61,11 +63,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HomeScreen(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>){
+fun HomeScreen(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>, windowSize: WindowSize){
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "home_page") {
+    NavHost(navController = navController, startDestination = "splash_screen_gradient") {
+        composable("splash_screen_gradient"){
+            //SplashScreen(navController = navController)
+            SplashScreenGradient(navController = navController)
+        }
         composable("home_page"){
-            HeaderAndFooter(list = list, letterList = letterList, navController = navController )
+            HeaderAndFooter(list = list, letterList = letterList, navController = navController, windowSize = windowSize)
         }
 
         composable("gold_star") {

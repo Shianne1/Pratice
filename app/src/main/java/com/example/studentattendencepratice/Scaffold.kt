@@ -19,6 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -31,14 +34,28 @@ import com.example.studentattendencepratice.ui.theme.Claret
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>, navController: NavController){
+fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>, navController: NavController, windowSize: WindowSize){
+    val modifierHeight by remember(key1 = windowSize) {
+        mutableStateOf(if(windowSize.width == WindowType.Compact) 90 else 120)
+    }
+
+    val textFont by remember(key1 = windowSize) {
+        mutableStateOf(if(windowSize.width == WindowType.Compact)25 else 40)
+    }
+
+    val buttonFont by remember(key1 = windowSize) {
+        mutableStateOf(if(windowSize.width == WindowType.Compact)15 else 25)
+    }
     Scaffold(
+        /*
         modifier = Modifier
             .padding(top = 120.dp),
+
+         */
         topBar =  {
             CenterAlignedTopAppBar(
                 modifier = Modifier
-                    .height(120.dp),
+                    .height(modifierHeight.dp),
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Claret,
                 ),
@@ -50,7 +67,7 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                         TextButton( onClick = { /*TODO*/ }) {
                             Text(
                                 text = "STUDENT'S ATTENDANCE",
-                                fontSize = 40.sp,
+                                fontSize = textFont.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.White,
                             )
@@ -83,7 +100,7 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                         Text(
                             textAlign = TextAlign.Center,
                             text = "Gold Stars",
-                            fontSize = 25.sp,
+                            fontSize = buttonFont.sp,
                             color = Color.White
                         )
                     }
