@@ -6,6 +6,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -50,8 +51,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.studentattendencepratice.ui.theme.Amaranth
 import com.example.studentattendencepratice.ui.theme.Bittersweet
+import com.example.studentattendencepratice.ui.theme.Border_Color
 import com.example.studentattendencepratice.ui.theme.Claret
 import com.example.studentattendencepratice.ui.theme.Coral
+import com.example.studentattendencepratice.ui.theme.Middle_Ground
+import com.example.studentattendencepratice.ui.theme.Name_Card
 
 /*
 
@@ -138,8 +142,14 @@ fun StudentList (list: ArrayList<StudentNames>,sort: ArrayList<SortingNames>, pa
 fun LetterCard(sortingNames: SortingNames) {
     Card(modifier = Modifier
         .fillMaxWidth()
-        .border(3.dp, color = Claret, shape = RectangleShape),
-        colors = CardDefaults.cardColors(containerColor = Amaranth),
+        //.border(3.dp, color = Claret, shape = RectangleShape),
+        .border(
+            3.dp,
+            color = if(isSystemInDarkTheme()) Border_Color else Claret,
+            shape = RectangleShape
+        ),
+        //colors = CardDefaults.cardColors(containerColor = Amaranth),
+        colors = CardDefaults.cardColors(containerColor = if(isSystemInDarkTheme()) Name_Card else Amaranth),
         elevation = CardDefaults.cardElevation(8.dp),
         shape = RectangleShape
     )
@@ -148,7 +158,7 @@ fun LetterCard(sortingNames: SortingNames) {
             text = sortingNames.letter.uppercase(),
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black,
+            color = if(isSystemInDarkTheme()) Color.White else Color.Black,
             modifier = Modifier
                 .padding(15.dp)
                 .align(alignment = Alignment.Start)
@@ -161,10 +171,10 @@ fun LetterCard(sortingNames: SortingNames) {
 fun StudentCard(studentNames: StudentNames) { // Stateless counter
     Card(modifier = Modifier
         .padding(15.dp)
-        .border(3.dp, color = Claret, shape = RectangleShape)
+        .border(3.dp, color = if(isSystemInDarkTheme()) Border_Color else Claret, shape = RectangleShape)
         .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Coral),
+        colors = CardDefaults.cardColors(containerColor = if (isSystemInDarkTheme()) Middle_Ground else Coral),
         shape = RectangleShape
     )
     {
@@ -172,7 +182,7 @@ fun StudentCard(studentNames: StudentNames) { // Stateless counter
             text = studentNames.names,
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black,
+            color = if(isSystemInDarkTheme()) Color.White else Color.Black,
             modifier = Modifier
                 .padding(25.dp)
                 .align(alignment = Alignment.Start)

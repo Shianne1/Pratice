@@ -1,7 +1,10 @@
 package com.example.studentattendencepratice
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.net.Uri
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -40,6 +45,7 @@ import androidx.navigation.NavController
 import com.example.studentattendencepratice.ui.theme.Bittersweet
 import com.example.studentattendencepratice.ui.theme.Claret
 
+@SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>, navController: NavController, windowSize: WindowSize){
@@ -54,6 +60,8 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
     val buttonFont by remember(key1 = windowSize) {
         mutableStateOf(if(windowSize.width == WindowType.Compact)15 else 25)
     }
+
+    var darkMode by mutableStateOf(false)
 
     val context = LocalContext.current
     val webIntent: Intent = Intent(Intent.ACTION_VIEW,
@@ -71,6 +79,8 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Claret,
                 ),
+
+
                 title = {
                     Row(
                         modifier = Modifier
@@ -86,7 +96,18 @@ fun HeaderAndFooter(list: ArrayList<StudentNames>, letterList: ArrayList<Sorting
                         }
                     }
                 },
+
                 actions = {
+                    IconButton(onClick = {UI_MODE_NIGHT_YES }){
+                        Icon(imageVector = Icons.Filled.Star,
+                            contentDescription = "Info Icon",
+                            tint = Color.White,
+                            modifier = Modifier
+                                .padding(top = 20.dp)
+                                .size(40.dp)
+                        )
+                    }
+
                     IconButton(onClick = {
                         context.startActivity(webIntent)
                     }){

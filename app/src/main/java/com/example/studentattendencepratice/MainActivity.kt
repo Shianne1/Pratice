@@ -3,6 +3,7 @@ package com.example.studentattendencepratice
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +26,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -37,6 +41,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.studentattendencepratice.ui.theme.Amaranth
+import com.example.studentattendencepratice.ui.theme.Background_Color
 import com.example.studentattendencepratice.ui.theme.Bittersweet
 import com.example.studentattendencepratice.ui.theme.Claret
 import com.example.studentattendencepratice.ui.theme.StudentAttendencePraticeTheme
@@ -49,11 +54,13 @@ class MainActivity : ComponentActivity() {
             val list2 = FileReader.readFile(this, "Attendace")
             val list3 = FileParser.PopulateLetter(list2)
             val window = rememberSize()
+            //val darkTheme by remember { mutableStateOf(false) }
 
             StudentAttendencePraticeTheme {
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = if(isSystemInDarkTheme()) Background_Color else Color.White
                 ) {
                     //ImageHeader()
                     HomeScreen(list = list2, letterList = list3, windowSize = window)

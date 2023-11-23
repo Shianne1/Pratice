@@ -31,3 +31,9 @@ val Persian_green = Color(0xFF2A9D8F)
 val Saffron = Color(0xFFE9C46A)
 val Sandy_brown = Color(0xFFF4A261)
 val Burnt_sienna = Color(0xFFE76F51)
+
+//Dark Theme
+val Name_Card = Color(0xFFAEB8FE)
+val Middle_Ground = Color(0xFF2F2E32)
+val Border_Color = Color(0xFF75B4EE)
+val Background_Color = Color(0xFF121212)

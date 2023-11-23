@@ -87,7 +87,7 @@ fun AnimatedSlashScreen(navController: NavController){
 
             )
 
-            Spacer(modifier = Modifier.height(100.dp))
+            Spacer(modifier = Modifier.height(50.dp))
             Text(text = "Student Attendance",
                 modifier = Modifier
                     .alpha(animWord.value)
