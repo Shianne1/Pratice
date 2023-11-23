@@ -40,6 +40,7 @@ import com.example.studentattendencepratice.ui.theme.Amaranth
 import com.example.studentattendencepratice.ui.theme.Bittersweet
 import com.example.studentattendencepratice.ui.theme.Claret
 import com.example.studentattendencepratice.ui.theme.StudentAttendencePraticeTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +57,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //ImageHeader()
                     HomeScreen(list = list2, letterList = list3, windowSize = window)
+                    //showingTime()
                 }
             }
         }
@@ -65,10 +67,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HomeScreen(list: ArrayList<StudentNames>, letterList: ArrayList<SortingNames>, windowSize: WindowSize){
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "splash_screen_gradient") {
-        composable("splash_screen_gradient"){
+    NavHost(navController = navController, startDestination = "splash_screen") {
+        composable("splash_screen"){
             //SplashScreen(navController = navController)
-            SplashScreenGradient(navController = navController)
+            //SplashScreenGradient(navController = navController)
+            AnimatedSlashScreen(navController = navController)
         }
         composable("home_page"){
             HeaderAndFooter(list = list, letterList = letterList, navController = navController, windowSize = windowSize)
