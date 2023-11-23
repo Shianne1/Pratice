@@ -75,7 +75,9 @@ fun AnimatedSlashScreen(navController: NavController){
         .fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
-        Column() {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.good_job),
                 contentDescription = "null",
