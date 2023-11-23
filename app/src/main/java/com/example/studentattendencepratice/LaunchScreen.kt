@@ -40,37 +40,87 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun AnimatedSlashScreen(navController: NavController){
+    val scale = remember { androidx.compose.animation.core.Animatable(0f) }
     var startAnimation by remember { mutableStateOf(false) }
+    /*
     val anim = animateFloatAsState(
         targetValue = if(startAnimation) 1f else 0f,
-        animationSpec = tween(durationMillis = 3000),
+        animationSpec = tween(durationMillis = 2000),
+    )
+
+     */
+
+    val animWord = animateFloatAsState(
+        targetValue = if(startAnimation) 1f else 0f,
+        animationSpec = tween(durationMillis = 4000),
+        label = "Animating Logo",
     )
 
     LaunchedEffect(key1 = true){
+        scale.animateTo(
+            targetValue = 0.7f,
+            // tween Animation
+            animationSpec = tween(
+                durationMillis = 800,
+                easing = {
+                    OvershootInterpolator(4f).getInterpolation(it)
+                }))
         startAnimation = true
         delay(4000)
         navController.popBackStack()
         navController.navigate("home_page")
     }
-    Splash(alpha = anim.value)
-}
-
-@Composable
-fun Splash(alpha: Float){
     Box( modifier = Modifier
         .background(if (isSystemInDarkTheme()) Color.Black else Bittersweet)
         .fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
-        Image(painter = painterResource(id = R.drawable.good_job),
-            contentDescription = "null",
-            modifier = Modifier
-                .size(200.dp)
-                .alpha(alpha = alpha)
-        )
+        Column() {
+            Image(
+                painter = painterResource(id = R.drawable.good_job),
+                contentDescription = "null",
+                modifier = Modifier
+                    .size(200.dp)
+                    .scale(scale.value)
+
+            )
+
+            Spacer(modifier = Modifier.height(100.dp))
+            Text(text = "Student Attendance",
+                modifier = Modifier
+                    .alpha(animWord.value)
+            )
+        }
+    }
+    //Splash(/*alpha = anim.value,*/ alpha1 = animWord.value, scale = scale.value)
+}
+
+@Composable
+fun Splash(alpha: Float, alpha1: Float, scale: Float){
+    Box( modifier = Modifier
+        .background(if (isSystemInDarkTheme()) Color.Black else Bittersweet)
+        .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ){
+        Column {
+            Image(
+                painter = painterResource(id = R.drawable.good_job),
+                contentDescription = "null",
+                modifier = Modifier
+                    .size(200.dp)
+                    .alpha(alpha = alpha)
+                    .scale(scale = scale)
+            )
+            Spacer(modifier = Modifier.height(100.dp))
+            Text(text = "Student Attendance",
+                modifier = Modifier
+                    .alpha(alpha = alpha1)
+                )
+        }
     }
 }
 
+/*
 @Composable
 @Preview
 fun SplashScreenView(){
@@ -82,6 +132,8 @@ fun SplashScreenView(){
 fun SplashScreenDarkMode(){
     Splash(alpha = 1f)
 }
+
+ */
 
 
 @Composable
